@@ -19,6 +19,24 @@ class User extends AuthUser
     protected $hidden = [
         "password"
     ];
+
+ public function posts() {
+        return $this->hasMany(Post::class);
+    }
+
+    public function likes() {
+    return $this->hasMany(Like::class);
+}
+
+    public function sentFriendRequests()
+    {
+        return $this->hasMany(FriendRequest::class, 'sender_id');
+    }
+
+    public function receivedFriendRequests()
+    {
+        return $this->hasMany(FriendRequest::class, 'receiver_id');
+    }
     // public function sendRequest(){
     //     return $this->hasMany(friend)
     // }
